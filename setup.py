@@ -43,14 +43,15 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    tests_require=['mock'] + [] if PYTHON3K else ['unittest2'],
+    tests_require=['mock'] if PYTHON3K else ['mock', 'unittest2'],
     test_suite="tests" if PYTHON3K else "unittest2.collector"
 )

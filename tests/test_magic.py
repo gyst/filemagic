@@ -69,6 +69,10 @@ class TestMagic(unittest.TestCase):
             n = eval(repr(m), {'Magic': magic.Magic})
             n.close()
 
+    @unittest.skipIf(hasattr(sys, 'pypy_version_info'),
+            'garbarge collection on PyPy is not deterministic')
+    @unittest.skipIf(sys.version_info[0] == 2 or sys.version_info[1] < 2,
+                     'ResourceWarning was introduced in python 3.2')
     @unittest.skipIf(not hasattr(unittest.TestCase, 'assertWarns'),
             'unittest does not support assertWarns')
     def test_resource_warning(self):
