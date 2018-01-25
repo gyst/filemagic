@@ -7,8 +7,9 @@ python:
   - pypy
   - pypy3
 matrix:
+  fast_finish: true
   allow_failures:
-  - python: pypi
+  - python: pypy
 install:
   - pip install -r requirements/development.txt -r requirements/production.txt
   - python setup.py install
