@@ -7,7 +7,7 @@ if sys.version_info[0] >= 3:
     bytes_t = bytes
     decode_result = True
 else:
-    unicode_t = unicode
+    unicode_t = unicode  # flake8:noqa
     bytes_t = str
     decode_result = False
 
@@ -19,6 +19,7 @@ def byte_args(positions):
     """
     def decorator(func):
         ordinals = set(positions)
+
         @wraps(func)
         def wrapper(*args, **kwargs):
             def encoder(args):
@@ -50,6 +51,7 @@ def str_return(func):
     """
     if not decode_result:
         return func
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         value = func(*args, **kwargs)

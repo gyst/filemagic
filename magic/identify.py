@@ -57,11 +57,12 @@ class Magic(object):
         """
         self._repr = "Magic(paths={0!r}, flags={1!r})".format(paths, flags)
         cookie = api.magic_open(flags)
+
         def cleanup(_):
             warnings.warn("magic.Magic() not closed before being garbage "
-                    "collected. Magic.close() should be called when finished"
-                    "with",
-                    CleanupWarning)
+                          "collected. Magic.close() should be called when "
+                          "finished with",
+                          CleanupWarning)
             api.magic_close(cookie)
         self.weakref = weakref.ref(self, cleanup)
         self.cookie = cookie
@@ -103,8 +104,8 @@ class Magic(object):
     def id_buffer(self, buffer):
         "Return a textual description of the contents of buffer"
         return api.magic_buffer(self.cookie,
-                api.ctypes.c_char_p(buffer),
-                len(buffer))
+                                api.ctypes.c_char_p(buffer),
+                                len(buffer))
 
     @raise_if_none('cookie', MagicError, 'object has already been closed')
     @byte_args(positions=[1])

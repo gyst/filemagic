@@ -33,7 +33,8 @@ setup(
     author="Aaron Iles",
     author_email="aaron.iles@gmail.com",
     url="http://filemagic.readthedocs.org",
-    description="A Python API for libmagic, the library behind the Unix file command",
+    description="A Python API for libmagic, the library behind the "
+    "Unix file command",
     long_description=load_rst(),
     license="ASL",
     classifiers=[

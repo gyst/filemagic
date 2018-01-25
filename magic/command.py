@@ -57,9 +57,9 @@ def parse_command_line(arguments):
     usage = "usage: python -m magic [options] file ..."
     parser = OptionParser(usage=usage)
     parser.add_option("-m", "--magic", dest="paths",
-            help="A colon separated list of magic files to use")
+                      help="A colon separated list of magic files to use")
     parser.add_option("--json", action="store_true", default=False,
-            help="Format output in JSON")
+                      help="Format output in JSON")
     return parser.parse_args(arguments)
 
 

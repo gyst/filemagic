@@ -22,7 +22,7 @@ class TestMagic(unittest.TestCase):
 
     def test_invalid_database(self):
         self.assertRaises(magic.MagicError, magic.Magic,
-                paths=['test/magic/_false_'])
+                          paths=['test/magic/_false_'])
 
     def test_use_after_closed(self):
         with magic.Magic() as m:
@@ -41,47 +41,47 @@ class TestMagic(unittest.TestCase):
 
     def test_mime_type_file(self):
         with magic.Magic(paths=['tests/magic/python'],
-                flags=magic.MAGIC_MIME_TYPE) as m:
+                         flags=magic.MAGIC_MIME_TYPE) as m:
             id = m.id_filename('setup.py')
             self.assertEqual(id, 'text/x-python')
 
     def test_mime_type_desc(self):
         with magic.Magic(paths=['tests/magic/python'],
-                flags=magic.MAGIC_MIME_TYPE) as m:
+                         flags=magic.MAGIC_MIME_TYPE) as m:
             id = m.id_buffer('#!/usr/bin/env python\n')
             self.assertEqual(id, 'text/x-python')
 
     def test_mime_encoding_file(self):
         with magic.Magic(paths=['tests/magic/python'],
-                flags=magic.MAGIC_MIME_ENCODING) as m:
+                         flags=magic.MAGIC_MIME_ENCODING) as m:
             id = m.id_filename('setup.py')
             self.assertEqual(id, 'us-ascii')
 
     def test_mime_encoding_desc(self):
         with magic.Magic(paths=['tests/magic/python'],
-                flags=magic.MAGIC_MIME_ENCODING) as m:
+                         flags=magic.MAGIC_MIME_ENCODING) as m:
             id = m.id_buffer('#!/usr/bin/env python\n')
             self.assertEqual(id, 'us-ascii')
 
     def test_repr(self):
         with magic.Magic(paths=['tests/magic/python'],
-                flags=magic.MAGIC_MIME_ENCODING) as m:
+                         flags=magic.MAGIC_MIME_ENCODING) as m:
             n = eval(repr(m), {'Magic': magic.Magic})
             n.close()
 
     @unittest.skipIf(hasattr(sys, 'pypy_version_info'),
-            'garbarge collection on PyPy is not deterministic')
+                     'garbarge collection on PyPy is not deterministic')
     @unittest.skipIf(sys.version_info[0] == 2 or sys.version_info[1] < 2,
                      'ResourceWarning was introduced in python 3.2')
     @unittest.skipIf(not hasattr(unittest.TestCase, 'assertWarns'),
-            'unittest does not support assertWarns')
+                     'unittest does not support assertWarns')
     def test_resource_warning(self):
         with self.assertWarns(ResourceWarning):
             m = magic.Magic()
             del m
 
     @unittest.skipIf(hasattr(sys, 'pypy_version_info'),
-            'garbarge collection on PyPy is not deterministic')
+                     'garbarge collection on PyPy is not deterministic')
     def test_weakref(self):
         magic_close = magic.api.magic_close
         with mock.patch('magic.api.magic_close') as close_mock:
@@ -91,7 +91,7 @@ class TestMagic(unittest.TestCase):
                 m = magic.Magic()
                 del m
                 gc.collect()
-            self.assertEqual(close_mock.call_count, 1)
+                self.assertEqual(close_mock.call_count, 1)
 
 
 if __name__ == '__main__':

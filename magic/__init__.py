@@ -14,6 +14,6 @@ allocated by libmagic.
 
 See http://filemagic.readthedocs.org for detailed documentation.
 """
-from magic.flags import *
-from magic.identify import Magic, MagicError
-from magic.version import __version__
+from magic.flags import *  # flake8:noqa
+from magic.identify import Magic, MagicError  # flake8:noqa
+from magic.version import __version__  # flake8:noqa

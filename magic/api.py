@@ -9,7 +9,8 @@ import ctypes
 import platform
 import warnings
 
-libname = ctypes.util.find_library('magic') or ctypes.util.find_library('magic1')
+libname = (ctypes.util.find_library('magic')
+           or ctypes.util.find_library('magic1'))
 if not libname:
     if platform.system() == 'SunOS':
         libname = 'libmagic.so'
@@ -30,6 +31,7 @@ except Exception:
 # magic_t type
 class Cookie(ctypes.Structure):
     "Magic data structure"
+
 
 c_cookie_p = ctypes.POINTER(Cookie)
 
@@ -57,6 +59,7 @@ def errcheck_null(result, func, arguments):
         error = magic_error(cookie)
         raise MagicError(errno, error)
     return result
+
 
 # dynamically load library
 lib.magic_open.argtypes = [ctypes.c_int]
